@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Similar Products</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 min-h-screen p-6 font-sans">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">
+      Similar Products for a <span class="text-purple-600">{{ color }}</span> <span class="text-pink-600">{{ category }}</span>
+    </h2>
+    {% if results %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for item in results %}
+          <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+            <img src="{{ item.image }}" alt="{{ item.title }}" class="w-full h-48 object-cover" />
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-gray-700">{{ item.title }}</h3>
+              <p class="text-pink-600 font-bold mt-2">₹ {{ item.price }}</p>
+              <p class="text-sm text-gray-500 mt-1">Category: {{ item.category }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center text-gray-500 text-lg">Oops!!!!No matching</p>
+    {% endif %}
+  </div>
+</body>
+</html>
